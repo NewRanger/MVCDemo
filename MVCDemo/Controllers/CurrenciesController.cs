@@ -10,7 +10,7 @@ namespace MVCDemo.Controllers
 {
     public class CurrenciesController : Controller
     {
-        // GET: Currencies
+        // GET: Currencies / Index
         public ActionResult Index()
         {
             CurrencyContext currencyContext = new CurrencyContext();
@@ -23,7 +23,7 @@ namespace MVCDemo.Controllers
             return View(viewModel);
         }
 
-        // GET: Currency / Edit
+        // GET: Currencies / Edit
         public ActionResult Edit(int? id)
         {
             Currency currency = new Currency
@@ -31,7 +31,7 @@ namespace MVCDemo.Controllers
                 code = "",
                 name = "",
                 name_lat = "",
-                order_index = 0,
+                order_index = 1,
             };
 
             if (id != null)
@@ -39,15 +39,13 @@ namespace MVCDemo.Controllers
                 CurrencyContext currencyContext = new CurrencyContext();
                 currency = currencyContext.Currency.Single(cur => cur.id == id);
             }
-           
 
             return View(currency);
-
         }
 
-        // POST: Currency / EditCurrency
+        // POST: Currencies / EditCurrency
         [HttpPost]
-        public ActionResult EditCurrency(int id, string code, string name, string name_lat, int order_index)
+        public ActionResult EditCurrency(int? id, string code, string name, string name_lat, int order_index)
         {
             CurrencyContext currencyContext = new CurrencyContext();
 
@@ -74,10 +72,8 @@ namespace MVCDemo.Controllers
                 currencyContext.Currency.Add(currency);
                 currencyContext.SaveChanges();
             }
-            
 
             return RedirectToAction("Index");
-
         }
     }
 }

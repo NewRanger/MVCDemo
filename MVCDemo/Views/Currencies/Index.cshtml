@@ -1,14 +1,18 @@
 ﻿@model MVCDemo.ViewModels.CurrenciesViewModel
 
 <header class="currency-header">
-    @Html.ActionLink("ვალუტის დამატება", "Edit", "Currencies", new { @class = "btn btn-primary" })
+    @Html.ActionLink("ვალუტის დამატება", "Edit", "Currencies", new { @class = "btn btn-success" })
 </header>
 
-<ul>
+<ul class="list-group">
     @foreach (var currency in Model.Currencies)
     {
-        <li>@currency.name_lat</li>
-        @Html.ActionLink("რედაქტირება", $"Edit/{currency.id}", "Currencies", new { @class = "btn btn-primary" })
-        @Html.ActionLink("წაშლა", $"Delete/{currency.id}", "Currencies", new { @class = "btn btn-danger" })
+        <li class="list-group-item currency-list-item">
+            @currency.name
+            <div class="currency-controll-group">
+                @Html.ActionLink("რედაქტირება", $"Edit/{currency.id}", "Currencies", new { @class = "btn btn-primary" })
+                @Html.ActionLink("წაშლა", $"Delete/{currency.id}", "Currencies", new { @class = "btn btn-danger" })
+            </div>
+        </li>
     }
 </ul>

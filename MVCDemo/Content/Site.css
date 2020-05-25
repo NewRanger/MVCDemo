@@ -3,6 +3,19 @@
     padding-bottom: 20px;
 }
 
+/* Global Developer Styles */
+.btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -25,4 +38,10 @@ textarea {
 
 .currency-header {
     padding: 25px 0;
+}
+
+.currency-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

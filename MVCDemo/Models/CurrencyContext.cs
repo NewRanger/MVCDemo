@@ -22,7 +22,7 @@ namespace MVCDemo.Models
 
             modelBuilder.Entity<Currency>()
                 .Property(e => e.name)
-                .IsUnicode(false);
+                .IsUnicode(true);
 
             modelBuilder.Entity<Currency>()
                 .Property(e => e.name_lat)

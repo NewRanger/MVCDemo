@@ -1,27 +1,27 @@
 ﻿@model MVCDemo.Models.Currency
 
 <header class="currency-header">
-    @Html.ActionLink("უკან", "Index", "Currencies", new { @class = "btn btn-primary" })
+    @Html.ActionLink("უკან", "Index", "Currencies", new { @class = "btn btn-secondary" })
     <h1> ვალუტის დამატება/რედაქტირება </h1>
 </header>
 
 <p>მიუთითეთ ვალუტის:</p>
 <form action="/Currencies/EditCurrency/@Model.id" method="post">
-    <div>
-        <label>კოდი</label>
-        <input type="text" name="code" value="@Model.code" />
+    <div class="form-group">
+        <label for="code">კოდი</label>
+        <input type="text" class="form-control" id="code" name="code" placeholder="USD" value="@Model.code">
     </div>
-    <div>
-        <label>დასახელება</label>
-        <input type="text" name="name" value="@Model.name" />
+    <div class="form-group">
+        <label for="name">დასახელება</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="ამერიკული დოლარი" value="@Model.name">
     </div>
-    <div>
-        <label>დასახელება ლათინურად</label>
-        <input type="text" name="name_lat" value="@Model.name_lat" />
+    <div class="form-group">
+        <label for="name_lat">დასახელება ლათინურად</label>
+        <input type="text" class="form-control" id="name_lat" name="name_lat" placeholder="US Dollar" value="@Model.name_lat">
     </div>
-    <div>
-        <label>თანმიმდევრობის ინდექსი</label>
-        <input type="text" name="order_index" value="@Model.order_index" />
+    <div class="form-group">
+        <label for="order_index">თანმიმდევრობის ინდექსი</label>
+        <input type="number" class="form-control" id="order_index" name="order_index" min="1" placeholder="1" value="@Model.order_index">
     </div>
     <button class="btn btn-primary" type="submit">დადასტურება</button>
 </form>
