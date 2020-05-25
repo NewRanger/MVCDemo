@@ -1,0 +1,14 @@
+﻿@model MVCDemo.ViewModels.CurrenciesViewModel
+
+<header class="currency-header">
+    @Html.ActionLink("ვალუტის დამატება", "Edit", "Currencies", new { @class = "btn btn-primary" })
+</header>
+
+<ul>
+    @foreach (var currency in Model.Currencies)
+    {
+        <li>@currency.name_lat</li>
+        @Html.ActionLink("რედაქტირება", $"Edit/{currency.id}", "Currencies", new { @class = "btn btn-primary" })
+        @Html.ActionLink("წაშლა", $"Delete/{currency.id}", "Currencies", new { @class = "btn btn-danger" })
+    }
+</ul>

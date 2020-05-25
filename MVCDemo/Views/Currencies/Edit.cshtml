@@ -1,0 +1,27 @@
+﻿@model MVCDemo.Models.Currency
+
+<header class="currency-header">
+    @Html.ActionLink("უკან", "Index", "Currencies", new { @class = "btn btn-primary" })
+    <h1> ვალუტის დამატება/რედაქტირება </h1>
+</header>
+
+<p>მიუთითეთ ვალუტის:</p>
+<form action="/Currencies/EditCurrency/@Model.id" method="post">
+    <div>
+        <label>კოდი</label>
+        <input type="text" name="code" value="@Model.code" />
+    </div>
+    <div>
+        <label>დასახელება</label>
+        <input type="text" name="name" value="@Model.name" />
+    </div>
+    <div>
+        <label>დასახელება ლათინურად</label>
+        <input type="text" name="name_lat" value="@Model.name_lat" />
+    </div>
+    <div>
+        <label>თანმიმდევრობის ინდექსი</label>
+        <input type="text" name="order_index" value="@Model.order_index" />
+    </div>
+    <button class="btn btn-primary" type="submit">დადასტურება</button>
+</form>
