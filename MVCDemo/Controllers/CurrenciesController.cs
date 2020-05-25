@@ -13,11 +13,11 @@ namespace MVCDemo.Controllers
         // GET: Currencies / Index
         public ActionResult Index()
         {
-            CurrencyContext currencyContext = new CurrencyContext();
+            CurrencyContext context = new CurrencyContext();
 
             var viewModel = new CurrenciesViewModel
             {
-                Currencies = currencyContext.Currency.ToList()
+                Currencies = context.Currency.ToList()
             };
 
             return View(viewModel);
@@ -47,18 +47,18 @@ namespace MVCDemo.Controllers
         [HttpPost]
         public ActionResult EditCurrency(int? id, string code, string name, string name_lat, int order_index)
         {
-            CurrencyContext currencyContext = new CurrencyContext();
+            CurrencyContext context = new CurrencyContext();
 
             if (id != null && id > 0)
             {
-                Currency currency = currencyContext.Currency.Single(cur => cur.id == id);
+                Currency currency = context.Currency.Single(cur => cur.id == id);
 
                 currency.code = code;
                 currency.name = name;
                 currency.name_lat = name_lat;
                 currency.order_index = order_index;
 
-                currencyContext.SaveChanges();
+                context.SaveChanges();
             } else
             {
                 Currency currency = new Currency
@@ -69,8 +69,8 @@ namespace MVCDemo.Controllers
                     order_index = order_index,
                 };
 
-                currencyContext.Currency.Add(currency);
-                currencyContext.SaveChanges();
+                context.Currency.Add(currency);
+                context.SaveChanges();
             }
 
             return RedirectToAction("Index");
