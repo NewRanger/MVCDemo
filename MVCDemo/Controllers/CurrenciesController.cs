@@ -101,6 +101,7 @@ namespace MVCDemo.Controllers
         }
 
         // POST: Currencies / EditCourse
+        // prop: id (currency id)
         [HttpPost]
         public ActionResult EditCourse(int? id, double buy, double sell)
         {
