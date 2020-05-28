@@ -1,27 +1,31 @@
 ﻿@model MVCDemo.Models.Currency
+@{ 
+    var pageTitle = "ვალუტის " + (Model.id > 0 ? "რედაქტირება" : "დამატება");
+}
 
 <header class="currency-header">
     @Html.ActionLink("უკან", "Index", "Currencies", new { @class = "btn btn-secondary" })
-    <h1> ვალუტის დამატება/რედაქტირება </h1>
+    <h1> @pageTitle </h1>
 </header>
 
-<p>მიუთითეთ ვალუტის:</p>
-<form action="/Currencies/EditCurrency/@Model.id" method="post">
+<p>გთხოვთ მიუთითოთ ვალუტის:</p>
+@using (Html.BeginForm("EditCurrency", "Currencies", new { id = Model.id}, FormMethod.Post))
+{
     <div class="form-group">
-        <label for="code">კოდი</label>
-        <input type="text" class="form-control" id="code" name="code" placeholder="USD" value="@Model.code">
+        @Html.Label("code", "კოდი")
+        @Html.TextBoxFor(m => m.code, new { @class="form-control", placeholder="USD" })
     </div>
     <div class="form-group">
-        <label for="name">დასახელება</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="ამერიკული დოლარი" value="@Model.name">
+        @Html.Label("name", "დასახელება")
+        @Html.TextBoxFor(m => m.name, new { @class = "form-control", placeholder = "ამერიკული დოლარი" })
     </div>
     <div class="form-group">
-        <label for="name_lat">დასახელება ლათინურად</label>
-        <input type="text" class="form-control" id="name_lat" name="name_lat" placeholder="US Dollar" value="@Model.name_lat">
+        @Html.Label("name_lat", "დასახელება ლათინურად")
+        @Html.TextBoxFor(m => m.name_lat, new { @class = "form-control", placeholder = "US Dollar" })
     </div>
     <div class="form-group">
-        <label for="order_index">თანმიმდევრობის ინდექსი</label>
-        <input type="number" class="form-control" id="order_index" name="order_index" min="1" placeholder="1" value="@Model.order_index">
+        @Html.Label("order_index", "თანმიმდევრობის ინდექსი")
+        @Html.TextBoxFor(m => m.order_index, new { type = "number", @class = "form-control",  min = 1, placeholder = "1" })
     </div>
-    <button class="btn btn-primary" type="submit">დადასტურება</button>
-</form>
+    @Html.TextBox("submit", "დადასტურება", new { @class = "btn btn-primary", type = "submit"})
+}

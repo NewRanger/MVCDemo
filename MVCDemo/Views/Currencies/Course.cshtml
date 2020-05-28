@@ -1,0 +1,26 @@
+﻿@model MVCDemo.Models.Courses
+
+<header class="currency-header">
+    @Html.ActionLink("უკან", "Index", "Currencies", new { @class = "btn btn-secondary" })
+    <h1> ვალუტის კურსის რედაქტირება </h1>
+</header>
+
+<p>კურსის განსაზღვრა ხდება მხოლოდ ლართან(GEL) მიმართებაში:</p>
+@using (Html.BeginForm("EditCourse", "Currencies", new { id = Model.currency_id }, FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.Label("buy", "ყიდვა")
+                @Html.TextBoxFor(m => m.buy, new { type = "number", @class = "form-control", min = 1, placeholder = "1" })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.Label("sell", "გაყიდვა")
+                @Html.TextBoxFor(m => m.sell, new { type = "number", @class = "form-control", min = 1, placeholder = "1" })
+            </div>
+        </div>
+    </div>
+    @Html.TextBox("submit", "დადასტურება", new { @class = "btn btn-primary", type = "submit" })
+}

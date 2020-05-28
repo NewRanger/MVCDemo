@@ -10,8 +10,15 @@
         <li class="list-group-item currency-list-item">
             @currency.name
             <div class="currency-controll-group">
-                @Html.ActionLink("რედაქტირება", $"Edit/{currency.id}", "Currencies", new { @class = "btn btn-primary" })
-                @Html.ActionLink("წაშლა", $"Delete/{currency.id}", "Currencies", new { @class = "btn btn-danger" })
+                <a class="btn btn-warning" title="კურსი" href="@Url.Action("Course", "Currencies", new { id = currency.id})">
+                    <i class="fas fa-exchange-alt"></i>
+                </a>
+                <a class="btn btn-primary" title="დეტალები" href="@Url.Action("Edit", "Currencies", new { id = currency.id})">
+                    <i class="fas fa-pen"></i>
+                </a>
+                <a class="btn btn-danger" title="წაშლა" href="@Url.Action("Delete", "Currencies", new { id = currency.id})">
+                    <i class="fas fa-trash"></i>
+                </a>
             </div>
         </li>
     }

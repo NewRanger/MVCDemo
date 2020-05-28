@@ -13,6 +13,7 @@ namespace MVCDemo.Models
         }
 
         public virtual DbSet<Currency> Currency { get; set; }
+        public virtual DbSet<Courses> Courses { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

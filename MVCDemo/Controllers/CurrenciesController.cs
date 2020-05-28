@@ -36,11 +36,35 @@ namespace MVCDemo.Controllers
 
             if (id != null)
             {
-                CurrencyContext currencyContext = new CurrencyContext();
-                currency = currencyContext.Currency.Single(cur => cur.id == id);
+                CurrencyContext context = new CurrencyContext();
+                currency = context.Currency.Single(cur => cur.id == id);
             }
 
             return View(currency);
+        }
+
+        // GET: Currencies / Edit Course
+        // prop: id (currency id)
+        public ActionResult Course(int id)
+        {
+            if(id == 0)
+            {
+                return View();
+            }
+
+            Courses course = new Courses
+            {
+                currency_id = id,
+                buy = 1,
+                sell = 1
+            };
+
+            CurrencyContext context = new CurrencyContext();
+            Courses courseData = context.Courses.FirstOrDefault(cur => cur.currency_id == id);
+
+            if (courseData != null) course = courseData;
+
+            return View(course);
         }
 
         // POST: Currencies / EditCurrency
@@ -70,6 +94,36 @@ namespace MVCDemo.Controllers
                 };
 
                 context.Currency.Add(currency);
+                context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        // POST: Currencies / EditCourse
+        [HttpPost]
+        public ActionResult EditCourse(int? id, double buy, double sell)
+        {
+            CurrencyContext context = new CurrencyContext();
+            Courses course = context.Courses.FirstOrDefault(cor => cor.currency_id == id);
+
+            if (course != null)
+            {
+                course.buy = buy;
+                course.sell = sell;
+
+                context.SaveChanges();
+            }
+            else
+            {
+                course = new Courses
+                {
+                    currency_id = (int)id,
+                    buy = buy,
+                    sell = sell,
+                };
+
+                context.Courses.Add(course);
                 context.SaveChanges();
             }
 
