@@ -6,6 +6,7 @@ namespace MVCDemo.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("Courses")]
     public partial class Courses
     {
         public int id { get; set; }
